@@ -34,7 +34,7 @@ create table UTILISATEUR
 /*==============================================================*/
 create table CONGE
 (
-   ID_CONGE             int not null,
+   ID_CONGE             int not null AUTO_INCREMENT,
    MATRICULE            int not null,
    DATE_DEBUT           date,
    DATE_FIN             date,
