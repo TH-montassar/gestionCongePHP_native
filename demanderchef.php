@@ -37,7 +37,7 @@
             <div class="alert alert-dark" role="alert">
                 <h3>Demande de congé</h3>
             </div>
-            <form method="ROLE" action="ajouter-demande.php">
+            <form method="POST" action="ajouter-demande.php">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputdatedeb4">

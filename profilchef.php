@@ -78,7 +78,7 @@
                                 <td><?php echo $MAT ?></td>
                             </tr>
                             <tr>
-                                <td>nom</td>
+                                <td>Nom</td>
                                 <td><?php echo $NOM ?></td>
                             </tr>
                             <tr>
@@ -86,15 +86,15 @@
                                 <td><?php echo $PRENOM ?></td>
                             </tr>
                             <tr>
-                                <td>ROLE</td>
+                                <td>Rôle</td>
                                 <td><?php echo $ROLE ?></td>
                             </tr>
                             <tr>
-                                <td>Servive</td>
+                                <td>Poste</td>
                                 <td><?php echo $POSTE ?></td>
                             </tr>
                             <tr>
-                                <td>Division</td>
+                                <td>Departement</td>
                                 <td><?php echo $DIVISION ?></td>
                             </tr>
                         </tbody>

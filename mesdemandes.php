@@ -68,7 +68,7 @@
           if ($requete1[$i][5]== 1 || $requete1[$i][5]== -1) {
             echo"<td></td>";
           }else{
-            echo'<form method="ROLE" action="ModifierUTILISATEUR.php?IDC='.$array[$i].'">
+            echo'<form method="POST" action="ModifierUTILISATEUR.php?IDC='.$array[$i].'">
             <td> <button type="submit" class="btn btn-outline-secondary">Modifier</button> </td>
             </form>';
           }

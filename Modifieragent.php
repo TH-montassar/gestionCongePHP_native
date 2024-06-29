@@ -57,7 +57,7 @@
           echo'echec:'.$e->get_message();
         }
     ?>
-        <form method="ROLE" action="ModifierUTILISATEUR2.php">
+        <form method="POST" action="ModifierUTILISATEUR2.php">
             <div class="container">
                 <div class="alert alert-warning" role="alert">
                     <h5>Modification</h5>
