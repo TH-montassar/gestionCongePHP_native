@@ -45,15 +45,15 @@
 				$ROLE=$UTILISATEUR[0][3];
                 // Fetch division and POSTE information
                 $requete2 = $connexion->prepare("
-                    SELECT
-                        d.NOM_DIVITION,
+                     SELECT
+                        d.NOM_DEPARTEMENT,
                         s.NOM_POSTE
                     FROM
                         UTILISATEUR a
                     JOIN
                         POSTE s ON a.ID_POSTE = s.ID_POSTE
                     JOIN
-                        DEPARTEMENT d ON s.ID_DIVITION = d.ID_DIVITION
+                        DEPARTEMENT d ON s.ID_DEPARTEMENT = d.ID_DEPARTEMENT
                     WHERE
                         a.MATRICULE = $id
                 ");
@@ -100,7 +100,7 @@
                             </tr>
                             <tr>
                                 <td>Departement</td>
-                                <td><?php echo htmlspecialchars($info['NOM_DIVITION']); ?></td>
+                                <td><?php echo htmlspecialchars($info['NOM_DEPARTEMENT']); ?></td>
                             </tr>
                         </tbody>
                     </table>

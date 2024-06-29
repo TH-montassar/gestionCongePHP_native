@@ -51,7 +51,7 @@
         $_SESSION['idPOSTE']=$requete1[0][5];//pour validation chef//
         
         $requete2=$connexion->prepare("
-          SELECT NOM_DIVISION FROM division natural join POSTE where ID_POSTE=$ID_POSTE");
+          SELECT NOM_DEPARTEMENT FROM departement natural join POSTE where ID_POSTE=$ID_POSTE");
         $requete2->execute();
         $requete2=$requete2->fetchall();
         $DIVISION=$requete2[0][0];
