@@ -55,16 +55,16 @@
                     // Fetch division information
 
                     $requete2 = $connexion->prepare("
-                        SELECT d.NOM_DIVITION
+                        SELECT d.NOM_DEPARTEMENT
                         FROM DEPARTEMENT d
-                        JOIN POSTE s ON d.ID_DIVITION = s.ID_DIVITION
+                        JOIN POSTE s ON d.ID_DEPARTEMENT = s.ID_DEPARTEMENT
                         WHERE s.ID_POSTE = $ID_POSTE
                     ");
                     $requete2->execute();
                     $division = $requete2->fetch(PDO::FETCH_ASSOC);
 
                     if ($division) {
-                        $DIVISION = $division['NOM_DIVITION'];
+                        $DIVISION = $division['NOM_DEPARTEMENT'];
                     } else {
                         $DIVISION = "N/A";
                     }
@@ -101,7 +101,7 @@
                                 <td><?php echo $MAT ?></td>
                             </tr>
                             <tr>
-                                <td>nom</td>
+                                <td>Nom</td>
                                 <td><?php echo $NOM ?></td>
                             </tr>
                             <tr>
@@ -109,15 +109,15 @@
                                 <td><?php echo $PRENOM ?></td>
                             </tr>
                             <tr>
-                                <td>ROLE</td>
+                                <td>Rôle</td>
                                 <td><?php echo $ROLE ?></td>
                             </tr>
                             <tr>
-                                <td>Servive</td>
+                                <td>Poste</td>
                                 <td><?php echo $POSTE ?></td>
                             </tr>
                             <tr>
-                                <td>Division</td>
+                                <td>Departement</td>
                                 <td><?php echo $DIVISION ?></td>
                             </tr>
                         </tbody>

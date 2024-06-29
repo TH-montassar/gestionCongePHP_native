@@ -42,7 +42,7 @@
         <thead>
           <tr class="table-active">
             <th scope="col">Matricule</th>
-            <th scope="col">ROLE</th>
+            <th scope="col">Rôle</th>
             <th scope="col">Nom</th>
             <th scope="col">Prénom</th>
             <th scope="col">Date de début</th>
