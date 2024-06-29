@@ -33,8 +33,7 @@
 			try{
 				$connexion = new PDO("mysql:host=$serveur;dbname=gestionconge",$login,$pass);
 				$connexion->setattribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-				$requete1=$connexion->prepare("
-					 SELECT MATRICULE , ROLE, NOM ,PRENOM  ,DATE_DEBUT,DATE_FIN,SOLDE ,TYPE_CONGE FROM CONGE NATURAL join(UTILISATEUR) where ETAT = 1 ORDER BY ID_CONGE DESC");
+				$requete1=$connexion->prepare("SELECT MATRICULE , ROLE, NOM ,PRENOM  ,DATE_DEBUT,DATE_FIN,NOMBRE_JOUR ,TYPE_CONGE FROM CONGE NATURAL join(UTILISATEUR) where ETAT = 1 ORDER BY ID_CONGE DESC");
 				$requete1->execute();
 				$requete1=$requete1->fetchall();
 
@@ -47,7 +46,7 @@
             <th scope="col">Prénom</th>
             <th scope="col">Date de début</th>
             <th scope="col">Date de fin</th>
-            <th scope="col">Solde</th>
+            <th scope="col">NOMBRE_JOUR demande</th>
             <th scope="col">Type de congé</th>
           </tr>
         </thead>
@@ -61,10 +60,9 @@
           }  
             echo "</tr>";
         }
-        
           }
           catch(PDOEXEPTION $e){
-            echo'echec:'.$e->get_message();
+            echo 'echec:'.$e->get_message();
           }
 ?>
 

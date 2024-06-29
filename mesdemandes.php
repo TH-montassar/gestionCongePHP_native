@@ -49,7 +49,7 @@
           <th scope="col">Date de fin</th>
           <th scope="col">Type de congé</th>
           <th scope="col">Solde</th>
-          <th scope="col">...</th>
+          <th scope="col">..</th>
         </tr>
         </thead>
         <tbody>';

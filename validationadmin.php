@@ -12,10 +12,10 @@
 </head>
 
 <body>
-    <script src="bootstrap-4.3.1-dist/js/jquery-3.3.1.slim.min"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    <script src="bootstrap-4.3.1-dist/js/jquery-3.3.1.min.js"
+        integrity="sha384-aDSMK77V/k74gA+6B4VnclwZJdXh2PI569RY2P2GWx+fo/N+PxMNq+qFY+QGhQxT" crossorigin="anonymous">
     </script>
-    <script src="bootstrap-4.3.1-dist/js/popper.min"
+    <script src="bootstrap-4.3.1-dist/js/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>
     <script src="bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
@@ -41,8 +41,7 @@
       try{
         $connexion = new PDO("mysql:host=$serveur;dbname=gestionconge",$login,$pass);
         $connexion->setattribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-        $requete1=$connexion->prepare("
-          SELECT NOM ,PRENOM ,DATE_DEBUT,DATE_FIN,TYPE_CONGE,SOLDE,ID_CONGE,ETAT,MATRICULE FROM CONGE NATURAL join(UTILISATEUR) where ROLE='Chef' ORDER BY ID_CONGE DESC");
+        $requete1=$connexion->prepare("SELECT NOM ,PRENOM ,DATE_DEBUT,DATE_FIN,TYPE_CONGE,NOMBRE_JOUR,ID_CONGE,ETAT,MATRICULE FROM CONGE NATURAL join(UTILISATEUR) where ROLE='Manager' ORDER BY ID_CONGE DESC");
         $requete1->execute();
         $requete1=$requete1->fetchall();
         $MAT=$requete1[0][8];
@@ -72,16 +71,14 @@
           for ($j=0; $j <6 ; $j++) {
             $rr=$requete1[$i][$j];
             echo "<td> $rr </td>";
-          }  
-          $arraycng[$i]=$requete1[$i][6]; 
+          }
+          $arraycng[$i]=$requete1[$i][6];
           $arraysolde[$i]=$requete1[$i][5];
           if ($requete1[$i][7]== 1 || $requete1[$i][7]== -1) {
             echo"<td>   </td>";
-          }else{  
+          }else{
               echo '<td><div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Action
-             </button>
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
             <a class="dropdown-item" href="Accepter.php?ID='.$arraycng[$i].'& E=1">Accepter</a>
             <a class="dropdown-item" href="RefUTILISATEUR.php?ID='.$arraycng[$i].' & S='.$arraysolde[$i].' & MAT='.$MAT.' & E=1 ">RefUTILISATEUR</a>
@@ -92,7 +89,6 @@
         }
           echo "</tr>";
       }
-        
       }
       catch(PDOEXEPTION $e){
         echo'echec:'.$e->get_message();
