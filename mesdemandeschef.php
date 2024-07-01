@@ -40,23 +40,22 @@
 				$connexion = new PDO("mysql:host=$serveur;dbname=gestionconge",$login,$pass);
 				$connexion->setattribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 				$requete1=$connexion->prepare("
-					SELECT DATE_DEBUT,DATE_FIN,TYPE_CONGE,SOLDE,ID_CONGE , ETAT FROM CONGE where MATRICULE=$id ORDER BY ID_CONGE DESC");
+					SELECT DATE_DEBUT,DATE_FIN,TYPE_CONGE,NOMBRE_JOUR,ID_CONGE , ETAT FROM CONGE where MATRICULE=$id ORDER BY ID_CONGE DESC");
 				$requete1->execute();
 				$requete1=$requete1->fetchall();
-      
           echo '<table class="table table-hover">
             <thead>
               <tr>
                 <th scope="col">Date de début</th>
                 <th scope="col">Date de fin</th>
                 <th scope="col">Type de congé</th>
-                <th scope="col">Solde</th>
+                <th scope="col">NOMBRE_JOUR</th>
                 <th scope="col">..</th>
               </tr>
             </thead>
             <tbody>';
 
-            for ($i=0; $i <count($requete1) ; $i++) { 
+            for ($i=0; $i <count($requete1) ; $i++) {
               if ($requete1[$i][5]== 1) {
                 echo'<tr class="table-success">';
               }elseif ($requete1[$i][5]== -1) {
@@ -65,7 +64,7 @@
                 echo '<tr>';
               }
               for ($j=0; $j <4 ; $j++) {
-                $rr=$requete1[$i][$j]; 
+                $rr=$requete1[$i][$j];
                 echo "<td> $rr </td>";
               }
               $array[$i]=$requete1[$i][4];

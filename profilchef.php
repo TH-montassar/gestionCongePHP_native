@@ -33,11 +33,11 @@
 			$serveur="localhost";
 			$login="root";
 			$pass="";
-		  $id=$_SESSION['mat'];
+            $id=$_SESSION['mat'];
 			try{
 				$connexion = new PDO("mysql:host=$serveur;dbname=gestionconge",$login,$pass);
 				$connexion->setattribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-        $connexion->query('SET NAMES utf8');
+                $connexion->query('SET NAMES utf8');
 				$requete1=$connexion->prepare("
 					SELECT MATRICULE,NOM,PRENOM,ROLE,NOM_POSTE ,ID_POSTE FROM UTILISATEUR natural join POSTE where MATRICULE=$id");
 				$requete1->execute();
@@ -49,9 +49,7 @@
         $POSTE=$requete1[0][4];
         $ID_POSTE=$requete1[0][5];
         $_SESSION['idPOSTE']=$requete1[0][5];//pour validation chef//
-        
-        $requete2=$connexion->prepare("
-          SELECT NOM_DEPARTEMENT FROM departement natural join POSTE where ID_POSTE=$ID_POSTE");
+        $requete2=$connexion->prepare("SELECT NOM_DEPARTEMENT FROM DEPARTEMENT natural join POSTE where ID_POSTE=$ID_POSTE");
         $requete2->execute();
         $requete2=$requete2->fetchall();
         $DIVISION=$requete2[0][0];
