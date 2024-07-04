@@ -18,8 +18,8 @@ function accepter($id,$E)
 		$connexion = new PDO("mysql:host=$serveur;dbname=gestionconge",$login,$pass);
 		$connexion->setattribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 		$requete=$connexion->prepare("
-			UPDATE conge
-			SET ETAT = 1 where ID_CONGE=$id");
+			UPDATE CONGE
+			SET ETAT = 'Approved' where ID_CONGE=$id");
 		$requete->execute();
 		if ($E==1) {
 			header("location:validationadmin.php");
@@ -29,4 +29,4 @@ function accepter($id,$E)
 		echo'echec:'.$e->get_message();
 	}
 }
-			?>
+?>
