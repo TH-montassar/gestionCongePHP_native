@@ -33,7 +33,7 @@
 			try{
 				$connexion = new PDO("mysql:host=$serveur;dbname=gestionconge",$login,$pass);
 				$connexion->setattribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-				$requete1=$connexion->prepare("SELECT MATRICULE , ROLE, NOM ,PRENOM  ,DATE_DEBUT,DATE_FIN,NOMBRE_JOUR ,TYPE_CONGE FROM CONGE NATURAL join(UTILISATEUR) where ETAT = 1 ORDER BY ID_CONGE DESC");
+				$requete1=$connexion->prepare("SELECT MATRICULE , ROLE, NOM ,PRENOM  ,DATE_DEBUT,DATE_FIN,NOMBRE_JOUR ,TYPE_CONGE FROM CONGE NATURAL join(UTILISATEUR) where ETAT = 'Approved' ORDER BY ID_CONGE DESC");
 				$requete1->execute();
 				$requete1=$requete1->fetchall();
 
