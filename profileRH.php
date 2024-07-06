@@ -18,9 +18,10 @@
                 class="rounded float-left"><img src="Logo-Sesame.png" height="200" width="200"
                 class="rounded float-left"></h5>
         <nav class="my-2 my-md-0 mr-md-3">
-            <a class="p-2 text-dark" href="profiladmin.php">profil</a>
+            <a class="p-2 text-dark" href="profileRH.php">profil</a>
             <a class="p-2 text-dark" href="validationadmin.php">Validation</a>
             <a class="p-2 text-dark" href="consulter.php">consultation des demandes validées</a>
+            <a class="p-2 text-dark" href="addUser.php">Ajouter utilisateur</a>
         </nav>
         <a class="btn btn-outline-success" href="Deconnexion.php">déconnexion</a>
     </div>
@@ -45,7 +46,7 @@
 				$ROLE=$UTILISATEUR[0][3];
                 // Fetch division and POSTE information
                 $requete2 = $connexion->prepare("
-                     SELECT
+                    SELECT
                         d.NOM_DEPARTEMENT,
                         s.NOM_POSTE
                     FROM

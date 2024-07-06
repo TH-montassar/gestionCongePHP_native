@@ -49,7 +49,7 @@
         $connexion = new PDO("mysql:host=$serveur;dbname=gestionconge",$login,$pass);
         $connexion->setattribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
         $requete1=$connexion->prepare("
-          SELECT NOM ,PRENOM ,DATE_DEBUT,DATE_FIN,TYPE_CONGE,SOLDE,ID_CONGE,ETAT,MATRICULE FROM CONGE NATURAL join(UTILISATEUR) where MATRICULE != $id AND ID_POSTE=$id_POSTE ORDER BY ID_CONGE DESC");
+          SELECT NOM ,PRENOM ,DATE_DEBUT,DATE_FIN,TYPE_CONGE,NOMBRE_JOUR,ID_CONGE,ETAT,MATRICULE FROM CONGE NATURAL join(UTILISATEUR) where MATRICULE != $id AND ROLE = 'Employe' ORDER BY ID_CONGE DESC");
         $requete1->execute();
         $requete1=$requete1->fetchall();
           $MAT=$requete1[0][8];
