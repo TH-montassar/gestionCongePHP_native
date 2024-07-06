@@ -26,7 +26,7 @@
             <a class="p-2 text-dark" href="profilchef.php">profil</a>
             <a class="p-2 text-dark" href="demanderchef.php">Demander Conge</a>
             <a class="p-2 text-dark" href="mesdemandeschef.php">Mes demandes</a>
-            <a class="p-2 text-dark" href="validationchef.php">Validation</a>
+            <a class="p-2 text-dark" href="validationchef.php">Suivi demandes</a>
         </nav>
         <a class="btn btn-outline-success" href="Deconnexion.php">déconnexion</a>
     </div>
