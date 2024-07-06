@@ -25,7 +25,7 @@
 					if ($r[0][0]=="Manager") {
 						header("location:profilchef.php");
 					}elseif ($r[0][0]=="Responsable_RH") {
-						header("location:profiladmin.php");
+						header("location:profileRH.php");
 					}else{
 						header("location:profil.php");}
 				}else{

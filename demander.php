@@ -72,20 +72,20 @@
                 <?php
                 if(isset($_GET['D']))
                 {
-                  if ($_GET['D']==0) 
+                  if ($_GET['D']==0)
                     { echo'<br>
                       <div class="alert alert-danger alert-dismissible fade show" role="alert">
                       Impossible, vous avez terminé votre solde de jours<button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                       </button>
                       </div>';
-                    }elseif ($_GET['D']==1) 
+                    }elseif ($_GET['D']==1)
                     { echo'<br><div class="alert alert-danger alert-dismissible fade show" role="alert">
                       Impossible, vous avez dépassé 30 jours<button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                       </button>
                       </div>';
-                    }elseif ($_GET['D']==2) 
+                    }elseif ($_GET['D']==2)
                     { echo'<br><div class="alert alert-success alert-dismissible fade show" role="alert">
                       Demande envoyée<button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>

@@ -28,7 +28,7 @@
     $E=$_GET['E'];
     if ($E==1) {
       echo '<nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-dark" href="profiladmin.php">profil</a>
+        <a class="p-2 text-dark" href="profileRH.php">profil</a>
         <a class="p-2 text-dark" href="validationadmin.php">Validation</a>
         <a class="p-2 text-dark" href="consulter.php">consultation des demandes validées</a>
           </nav>';
