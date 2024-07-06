@@ -20,7 +20,7 @@
             <a class="p-2 text-dark" href="profileRH.php">profil</a>
             <a class="p-2 text-dark" href="validationadmin.php">Validation</a>
             <a class="p-2 text-dark" href="consulter.php">consultation des demandes validées</a>
-            <a class="p-2 text-dark" href="consulter.php">Ajouter utilisateur</a>
+            <a class="p-2 text-dark" href="addUser.php">Ajouter utilisateur</a>
         </nav>
         <a class="btn btn-outline-success" href="Deconnexion.php">déconnexion</a>
     </div>

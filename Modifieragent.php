@@ -57,7 +57,7 @@
           echo'echec:'.$e->get_message();
         }
     ?>
-        <form method="POST" action="ModifierUTILISATEUR2.php">
+        <form method="POST" action="Modifieragent2.php">
             <div class="container">
                 <div class="alert alert-warning" role="alert">
                     <h5>Modification</h5>
@@ -120,13 +120,13 @@
                 </div>
                 <?php
                 if(isset($_GET['Z'])){
-                  if ($_GET['Z']==0) 
+                  if ($_GET['Z']==0)
                     { echo'<br><div class="alert alert-danger alert-dismissible fade show" role="alert">
                       Impossible, le solde de jours est terminé<button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                       </button>
                       </div>';
-                    }elseif ($_GET['Z']==1) 
+                    }elseif ($_GET['Z']==1)
                       { echo'<br><div class="alert alert-danger alert-dismissible fade show" role="alert">
                         Impossible de dépasser 30 jours<button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>

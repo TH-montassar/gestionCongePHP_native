@@ -27,25 +27,25 @@ session_start();
 				if ($N_SOLDE<=0){
 						if ($requete[0][1]==Chef) {
 							header("location:Modifierchef.php?Z=2 & D=$id");
-						}else{header("location:ModifierUTILISATEUR.php?Z=2 & D=$id");}
+						}else{header("location:Modifieragent.php?Z=2 & D=$id");}
 				}elseif ($N_SOLDE>$SOLDE) {
 					if ($NBJ==0) {
 						if ($requete0[0][1]==Chef) {
 							header("location:Modifierchef.php?Z=0 & D=$id");
 						}else{	
-							header("location:ModifierUTILISATEUR.php?Z=0 & D=$id");}
+							header("location:Modifieragent.php?Z=0 & D=$id");}
 					}elseif ($N_SOLDE>30) {
 						if ($requete0[0][1]==Chef) {
 							header("location:Modifierchef.php?Z=1 & D=$id");
 						}else{	
-							header("location:ModifierUTILISATEUR.php?Z=1 & D=$id");}
+							header("location:Modifieragent.php?Z=1 & D=$id");}
 					}else{
 						$NN_SOLDE=$NBJ-$N_SOLDE;
 						if ($NN_SOLDE <0) {
 							if ($requete0[0][1]==Chef) {
 								header("location:Modifierchef.php?Z=$NBJ & D=$id");
 							}else{	
-								header("location:ModifierUTILISATEUR.php?Z=$NBJ & D=$id");}
+								header("location:Modifieragent.php?Z=$NBJ & D=$id");}
 						}else{
 							$requete=$connexion->prepare("UPDATE conge SET DATE_DEBUT=\"$N_DATE_D\" , DATE_FIN=\"$N_DATE_F\" , TYPE_CONGE=\"$N_TYPE\" , SOLDE=$N_SOLDE  where ID_CONGE=$id");
 							$requete->execute();
