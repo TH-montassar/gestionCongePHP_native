@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     7/23/2019 1:12:35 AM                         */
+/* Created on:     07/07/2024 1:12:35 AM                         */
 /*==============================================================*/
 
 
@@ -26,6 +26,7 @@ create table UTILISATEUR
    MAIL                 varchar(255),
    MOT_DE_PASSE         varchar(255),
    SOLDE_CONGE          int not null,
+   MANAGER_MATRICULE    int  null,
    primary key (MATRICULE)
 );
 
@@ -67,6 +68,9 @@ create table POSTE
 
 alter table UTILISATEUR add constraint FK_TRAVAILLER foreign key (ID_POSTE)
       references POSTE (ID_POSTE) on delete restrict on update restrict;
+
+alter table UTILISATEUR add constraint FK_MANAGER foreign key (MANAGER_MATRICULE)
+      references UTILISATEUR (MATRICULE) on delete restrict on update restrict;
 
 alter table CONGE add constraint FK_DEMANDER foreign key (MATRICULE)
       references UTILISATEUR (MATRICULE) on delete restrict on update restrict;
