@@ -38,7 +38,7 @@
 				$connexion = new PDO("mysql:host=$serveur;dbname=gestionconge",$login,$pass);
 				$connexion->setattribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 				$requete1=$connexion->prepare("
-					SELECT DATE_DEBUT,DATE_FIN,TYPE_CONGE,SOLDE, ID_CONGE,ETAT FROM CONGE where MATRICULE=$id ORDER BY ID_CONGE DESC");
+					SELECT DATE_DEBUT,DATE_FIN,TYPE_CONGE,NOMBRE_JOUR, ID_CONGE,ETAT FROM CONGE where MATRICULE=$id ORDER BY ID_CONGE DESC");
 				$requete1->execute();
 				$requete1=$requete1->fetchall();
 
