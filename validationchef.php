@@ -1,6 +1,12 @@
 <?php 
     session_start();
-      $id=$_SESSION['mat'];
+    if (!isset($_SESSION['mat']) || !isset($_SESSION['idPOSTE'])) {
+        // Handle the case where session variables are not set
+        die('Session variables are not set.');
+    }
+
+    $id = $_SESSION['mat'];
+    $id_POSTE = $_SESSION['idPOSTE'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,86 +34,91 @@
                 class="rounded float-left"><img src="Logo-Sesame.png" height="200" width="200"
                 class="rounded float-left"></h5>
         <nav class="my-2 my-md-0 mr-md-3">
-            <a class="p-2 text-dark" href="profilchef.php">profil</a>
+            <a class="p-2 text-dark" href="profilchef.php">Profil</a>
             <a class="p-2 text-dark" href="demanderchef.php">Demander</a>
             <a class="p-2 text-dark" href="mesdemandeschef.php">Mes demandes</a>
             <a class="p-2 text-dark" href="validationchef.php">Suivi demandes</a>
         </nav>
-        <a class="btn btn-outline-success" href="Deconnexion.php">déconnexion</a>
+        <a class="btn btn-outline-success" href="Deconnexion.php">Déconnexion</a>
     </div>
 
     <center>
-
         <?php
-      $serveur="localhost";
-      $login="root";
-      $pass="";
-      $id=$_SESSION['mat'];
-      $id_POSTE=$_SESSION['idPOSTE'];
+            $serveur = "localhost";
+            $login = "root";
+            $pass = "";
 
-      try{
-        $connexion = new PDO("mysql:host=$serveur;dbname=gestionconge",$login,$pass);
-        $connexion->setattribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-        $requete1=$connexion->prepare("
-          SELECT NOM ,PRENOM ,DATE_DEBUT,DATE_FIN,TYPE_CONGE,SOLDE,ID_CONGE,ETAT,MATRICULE FROM CONGE NATURAL join(UTILISATEUR) where MATRICULE != $id AND ID_POSTE=$id_POSTE ORDER BY ID_CONGE DESC");
-        $requete1->execute();
-        $requete1=$requete1->fetchall();
-          $MAT=$requete1[0][8];
-          echo '<table class="table table-hover">
-          <thead>
-            <tr>
-              <th scope="col">Nom</th>
-              <th scope="col">Prénom</th>
-              <th scope="col">Date de début</th>
-              <th scope="col">Date de fin</th>
-              <th scope="col">Type de congé</th>
-              <th scope="col">Solde</th>
-              <th Scope="col">Validation</th>
-            </tr>
-          </thead>
-          <tbody>';
+            try {
+                $connexion = new PDO("mysql:host=$serveur;dbname=gestionconge", $login, $pass);
+                $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $requete1 = $connexion->prepare("
+                    SELECT NOM, PRENOM, DATE_DEBUT, DATE_FIN, TYPE_CONGE, NOMBRE_JOUR, ID_CONGE, ETAT, MATRICULE
+                    FROM CONGE NATURAL JOIN UTILISATEUR
+                    WHERE MATRICULE != :id AND ID_POSTE = :id_POSTE
+                    ORDER BY ID_CONGE DESC
+                ");
+                $requete1->execute(['id' => $id, 'id_POSTE' => $id_POSTE]);
+                $requete1 = $requete1->fetchAll();
 
-        for ($i=0; $i <count($requete1) ; $i++) {
+                if (!empty($requete1)) {
+                    $MAT = $requete1[0]['MATRICULE'];
+                    echo '<table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nom</th>
+                                <th scope="col">Prénom</th>
+                                <th scope="col">Date de début</th>
+                                <th scope="col">Date de fin</th>
+                                <th scope="col">Type de congé</th>
+                                <th scope="col">Solde</th>
+                                <th Scope="col">Validation</th>
+                            </tr>
+                        </thead>
+                        <tbody>';
 
-          if ($requete1[$i][7]== 1) {
-              echo'<tr class="table-success">';
-          }elseif ($requete1[$i][7]== -1) {
-              echo'<tr class="table-danger">';
-          }else{
-            echo '<tr>';
-          }
-          for ($j=0; $j <6 ; $j++) {
-            $rr=$requete1[$i][$j];
-              echo "<td> $rr </td>";
-          }  
-            $arraycng[$i]=$requete1[$i][6];
-            $arraysolde[$i]=$requete1[$i][5]; 
-          if ($requete1[$i][7]== 1 || $requete1[$i][7]== -1) {
-            echo"<td></td>";
-          }else{  
-              echo '<td><div class="dropdown">
-             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Action
-              </button>
-              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-              <a class="dropdown-item" href="Accepter.php?ID='.$arraycng[$i].' & E=0 ">Accepter</a>
-              <a class="dropdown-item" href="RefUTILISATEUR.php?ID='.$arraycng[$i].' & S='.$arraysolde[$i].' & MAT='.$MAT.' & E=0 ">RefUTILISATEUR</a>
-              <a class="dropdown-item" href="Modifier.php?ID='.$arraycng[$i].' & E=0 ">Modifier</a>
-              </div>
-              </div>
-              </td>';
-          }
-            echo "</tr>";
-        }
-        
-      }
-      catch(PDOEXEPTION $e){
-        echo'echec:'.$e->get_message();
-      }
-    ?>
+                    for ($i = 0; $i < count($requete1); $i++) {
+                        if ($requete1[$i]['ETAT'] == 1) {
+                            echo '<tr class="table-success">';
+                        } elseif ($requete1[$i]['ETAT'] == -1) {
+                            echo '<tr class="table-danger">';
+                        } else {
+                            echo '<tr>';
+                        }
 
-        </tbody>
-        </table>
+                        for ($j = 0; $j < 6; $j++) {
+                            echo "<td>{$requete1[$i][$j]}</td>";
+                        }
+
+                        $arraycng[$i] = $requete1[$i]['ID_CONGE'];
+                        $arraysolde[$i] = $requete1[$i]['NOMBRE_JOUR'];
+
+                        if ($requete1[$i]['ETAT'] == 1 || $requete1[$i]['ETAT'] == -1) {
+                            echo "<td></td>";
+                        } else {
+                            echo '<td><div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Action
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                    <a class="dropdown-item" href="Accepter.php?ID=' . $arraycng[$i] . '&E=0">Accepter</a>
+                                    <a class="dropdown-item" href="RefUTILISATEUR.php?ID=' . $arraycng[$i] . '&S=' . $arraysolde[$i] . '&MAT=' . $MAT . '&E=0">Refuser</a>
+                                    <a class="dropdown-item" href="Modifier.php?ID=' . $arraycng[$i] . '&E=0">Modifier</a>
+                                </div>
+                            </div></td>';
+                        }
+
+                        echo "</tr>";
+                    }
+
+                    echo '</tbody>
+                    </table>';
+                } else {
+                    echo "Aucune demande trouvée.";
+                }
+            } catch (PDOException $e) {
+                echo 'Échec : ' . $e->getMessage();
+            }
+        ?>
     </center>
 </body>
 
