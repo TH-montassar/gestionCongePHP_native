@@ -52,7 +52,7 @@
         $connexion = new PDO("mysql:host=$serveur;dbname=gestionconge",$login,$pass);
         $connexion->setattribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
         $requete1=$connexion->prepare("
-          SELECT DATE_DEBUT,DATE_FIN,TYPE_CONGE,SOLDE FROM CONGE  where ID_CONGE=$id");
+          SELECT DATE_DEBUT,DATE_FIN,TYPE_CONGE,NOMBRE_JOUR FROM CONGE  where ID_CONGE=$id");
         $requete1->execute();
         $requete1=$requete1->fetchall();
       }
