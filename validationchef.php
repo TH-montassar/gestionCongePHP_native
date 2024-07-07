@@ -61,7 +61,7 @@
               <th scope="col">Date de début</th>
               <th scope="col">Date de fin</th>
               <th scope="col">Type de congé</th>
-              <th scope="col">Solde</th>
+              <th scope="col">Nombre de jour</th>
               <th Scope="col">Validation</th>
             </tr>
           </thead>
