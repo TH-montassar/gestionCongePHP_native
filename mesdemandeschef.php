@@ -49,27 +49,34 @@
                 <th scope="col">Date de début</th>
                 <th scope="col">Date de fin</th>
                 <th scope="col">Type de congé</th>
-                <th scope="col">NOMBRE_JOUR</th>
-                <th scope="col">..</th>
+                <th scope="col">Nombre de jour</th>
+                <th scope="col">Etat</th>
+                <th scope="col">Edit</th>
               </tr>
             </thead>
             <tbody>';
 
-            for ($i=0; $i <count($requete1) ; $i++) {
-              if ($requete1[$i][5]== 1) {
-                echo'<tr class="table-success">';
-              }elseif ($requete1[$i][5]== -1) {
-                echo'<tr class="table-danger">';
-              }else{
-                echo '<tr>';
+            for ($i = 0; $i < count($requete1); $i++) {
+              if ($requete1[$i][5] == 'Approved') {
+                  echo '<tr class="table-success">';
+              } elseif ($requete1[$i][5] == 'Rejected') {
+                  echo '<tr class="table-danger">';
+              } else {
+                  echo '<tr>';
               }
-              for ($j=0; $j <4 ; $j++) {
-                $rr=$requete1[$i][$j];
-                echo "<td> $rr </td>";
+              
+              for ($j = 0; $j < 4; $j++) {
+                  $rr = $requete1[$i][$j];
+                  echo "<td> $rr </td>";
               }
-              $array[$i]=$requete1[$i][4];
-              if ($requete1[$i][5]== 1 || $requete1[$i][5]== -1) {
-                echo"<td></td>";
+              
+              $etat = $requete1[$i][5];
+              echo "<td> $etat </td>";
+              
+              $array[$i] = $requete1[$i][4];
+              
+              if ($requete1[$i][5] == 'Approved' || $requete1[$i][5] == 'Rejected') {
+                  echo "<td></td>";
               }else{
                 echo'<form method="POST" action="Modifierchef.php?IDC='.$array[$i].'">
                 <td> <button type="submit" class="btn btn-outline-secondary">Modifier</button> </td>
