@@ -2,7 +2,11 @@
 /* DBMS name:      MySQL 5.0                                    */
 /* Created on:     07/07/2024 1:12:35 AM                         */
 /*==============================================================*/
-
+/*
+(700532, 'Manager'),
+(700453,  'Employe'),
+(700489,  'Responsable_RH')
+*/
 
 drop table if exists UTILISATEUR;
 

@@ -77,17 +77,6 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="inputPost">
-                            <h6>Post</h6>
-                        </label>
-                        <select id="inputPost" name="role" class="form-control">
-                            <option selected>Choisir..</option>
-                            <option value="Responsable_achat">Responsable achat</option>
-                            <option value="dev">dev</option>
-                            <option value="ManagerQulity">ManagerQulity</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-6">
                         <label for="inputRole">
                             <h6>Rôle</h6>
                         </label>
@@ -96,6 +85,58 @@
                             <option value="Responsable_RH">Responsable_RH</option>
                             <option value="Employe">Employe</option>
                             <option value="Manager">Manager</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputSupervisor">
+                            <h6>supervisor</h6>
+                        </label>
+                        <input type="text" class="form-control" id="inputSupervisor" name="supervisor"
+                            placeholder="supervisor">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputDepartement">
+                            <h6>Département</h6>
+                        </label>
+                        <select id="inputDepartement" name="departement" class="form-control">
+                            <option selected>Choisir..</option>
+                            <!-- Options will be dynamically populated from database -->
+                            <?php
+                            // Connect to your database
+                            $serveur = 'localhost';
+                            $login = "root";
+                            $pass = "";
+                            $database = 'gestionconge';
+                            try {
+                                $connexion = new PDO("mysql:host=$serveur;dbname=$database", $login, $pass);
+                                $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                                echo "Connected successfully";
+                            } catch(PDOException $e) {
+                                echo "Connection failed: " . $e->getMessage();
+                                exit(); // Exit script if connection fails
+                            }
+                            // Query to get all departments
+                            $sql = "SELECT ID_DEPARTEMENT, NOM_DEPARTEMENT FROM DEPARTEMENT";
+                            $result = $connexion->prepare($sql);
+                            $result->execute();
+                            // Populate options
+                            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                                echo "<option value='" . $row['ID_DEPARTEMENT'] . "'>" . $row['NOM_DEPARTEMENT'] . "</option>";
+                            }
+                            // Close connection
+                            $connexion = null; // Close the connection
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputPost">
+                            <h6>Poste</h6>
+                        </label>
+                        <select id="inputPost" name="poste" class="form-control">
+                            <option selected>Choisir..</option>
+                            <!-- Options will be dynamically populated based on selected department using JavaScript -->
                         </select>
                     </div>
                 </div>
@@ -113,6 +154,26 @@
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>
     <script src="bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+    <script>
+    // Function to dynamically populate posts based on selected department
+    $(document).ready(function() {
+        $('#inputDepartement').change(function() {
+            var departementId = $(this).val();
+            $.ajax({
+                type: 'POST',
+                url: 'function/getPosts.php', // PHP script to fetch posts based on department
+                data: {
+                    departementId: departementId
+                },
+                success: function(response) {
+                    $('#inputPost').html(response);
+                }
+            });
+        });
+    });
+    </script>
+
+
 </body>
 
 </html>
