@@ -75,6 +75,9 @@ alter table UTILISATEUR add constraint FK_MANAGER foreign key (MANAGER_MATRICULE
 alter table CONGE add constraint FK_DEMANDER foreign key (MATRICULE)
       references UTILISATEUR (MATRICULE) on delete restrict on update restrict;
 
+ALTER TABLE CONGE MODIFY COLUMN ETAT VARCHAR(255) NOT NULL DEFAULT 'Pending';
+
+
 alter table POSTE add constraint FK_AVOIR foreign key (ID_DEPARTEMENT)
       references DEPARTEMENT (ID_DEPARTEMENT) on delete restrict on update restrict;
 

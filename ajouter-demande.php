@@ -35,8 +35,8 @@ try {
             header("Location: " . ($role == 'Manager' ? "demanderchef.php?DD=$NBJ" : "demander.php?DD=$NBJ"));
         } else {
             $requete1 = $connexion->prepare("
-                INSERT INTO CONGE (MATRICULE, DATE_DEBUT, DATE_FIN, TYPE_CONGE, NOMBRE_JOUR)
-                VALUES (:id, :date_d, :date_f, :type, :solde)
+                INSERT INTO CONGE (MATRICULE, DATE_DEBUT, DATE_FIN, TYPE_CONGE, NOMBRE_JOUR,  ETAT)
+                VALUES (:id, :date_d, :date_f, :type, :solde, 'Pending')
             ");
             $requete1->bindParam(':id', $id, PDO::PARAM_INT);
             $requete1->bindParam(':date_d', $DATE_D);
