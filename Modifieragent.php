@@ -111,7 +111,8 @@
                     <div class="form-group col-md-4">
                         <select id="inputType" name="typeC" class="form-control">
                             <option selected>Choisir..</option>
-                            <option value="Congé annuel">Congé annuel</option>
+                            <option value="Congé payé annuel">Congé payé annuel</option>
+                        <option value="mission présence ecole">mission présence ecole</option>
                             <option value="Congé de permanence">Congé de permanence</option>
                             <option value="Congé familial">Congé familial</option>
                             <option value="R.H.S">R.H.S</option>
