@@ -39,7 +39,7 @@
 				$connexion->setattribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
                 $connexion->query('SET NAMES utf8');
 				$requete1=$connexion->prepare("
-					SELECT MATRICULE,NOM,PRENOM,ROLE,NOM_POSTE ,ID_POSTE FROM UTILISATEUR natural join POSTE where MATRICULE=$id");
+					SELECT MATRICULE,NOM,PRENOM,ROLE,NOM_POSTE ,ID_POSTE ,SOLDE_CONGE FROM UTILISATEUR natural join POSTE where MATRICULE=$id");
 				$requete1->execute();
 				$requete1=$requete1->fetchall();
 				$MAT=$requete1[0][0];
@@ -53,6 +53,7 @@
         $requete2->execute();
         $requete2=$requete2->fetchall();
         $DIVISION=$requete2[0][0];
+        $SOLDE_CONGE=$requete1[0][6];
 			}
 			catch(PDOEXEPTION $e){
 				echo'echec:'.$e->get_message();
@@ -94,6 +95,10 @@
                             <tr>
                                 <td>Departement</td>
                                 <td><?php echo $DIVISION ?></td>
+                            </tr>
+                            <tr>
+                                <td>Solde Congé</td>
+                                <td><?php echo $SOLDE_CONGE ?></td>
                             </tr>
                         </tbody>
                     </table>
