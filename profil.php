@@ -38,7 +38,7 @@
                 $connexion->query('SET NAMES utf8');
                 // Fetch UTILISATEUR and POSTE information
 				$requete1=$connexion->prepare("
-                    SELECT a.MATRICULE, a.NOM, a.PRENOM, a.ROLE, s.NOM_POSTE, s.ID_POSTE
+                    SELECT a.MATRICULE, a.NOM, a.PRENOM, a.ROLE, s.NOM_POSTE, s.ID_POSTE,  a.SOLDE_CONGE
                     FROM UTILISATEUR a
                     JOIN POSTE s ON a.ID_POSTE = s.ID_POSTE
                     WHERE a.MATRICULE = $id
@@ -52,6 +52,7 @@
                     $ROLE=$UTILISATEUR[0][3];
                     $POSTE=$UTILISATEUR[0][4];
                     $ID_POSTE=$UTILISATEUR[0][5];
+                    $SOLDE_CONGE=$UTILISATEUR[0][6];
                     // Fetch division information
 
                     $requete2 = $connexion->prepare("
@@ -119,6 +120,10 @@
                             <tr>
                                 <td>Departement</td>
                                 <td><?php echo $DIVISION ?></td>
+                            </tr>
+                            <tr>
+                                <td>Solde Congé</td>
+                                <td><?php echo $SOLDE_CONGE ?></td>
                             </tr>
                         </tbody>
                     </table>
