@@ -47,7 +47,7 @@
             <th scope="col">Prénom</th>
             <th scope="col">Date de début</th>
             <th scope="col">Date de fin</th>
-            <th scope="col">NOMBRE_JOUR demande</th>
+            <th scope="col">Nombre de jour demande</th>
             <th scope="col">Type de congé</th>
           </tr>
         </thead>
