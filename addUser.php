@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 
+
 <head>
     <link rel="icon" type="image/png" href="Logo-Sesame.png" />
     <title>ajouter utilisateur</title>
@@ -91,8 +92,9 @@
                         <label for="inputSupervisor">
                             <h6>supervisor</h6>
                         </label>
-                        <input type="text" class="form-control" id="inputSupervisor" name="supervisor"
-                            placeholder="supervisor">
+                        <select id="inputSupervisor" name="supervisor" class="form-control">
+                            <option selected>Choisir..</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-row">
@@ -154,26 +156,8 @@
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>
     <script src="bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
-    <script>
-    // Function to dynamically populate posts based on selected department
-    $(document).ready(function() {
-        $('#inputDepartement').change(function() {
-            var departementId = $(this).val();
-            $.ajax({
-                type: 'POST',
-                url: 'function/getPosts.php', // PHP script to fetch posts based on department
-                data: {
-                    departementId: departementId
-                },
-                success: function(response) {
-                    $('#inputPost').html(response);
-                }
-            });
-        });
-    });
-    </script>
-
-
+    <script src="function/getPosts.js"></script>
+    <script src="function/getSupervisor.js"> </script>
 </body>
 
 </html>
