@@ -143,6 +143,18 @@
                     </div>
                 </div>
                 <button type="submit" class="btn btn-success">Ajouter Utilisateur</button>
+                <?php
+                 if(isset($_GET['go']))
+                 {
+                   if ($_GET['go']==1)
+                     { echo'<br><div class="alert alert-success alert-dismissible fade show" role="alert">
+                        Utilisateur ajouté avec succès!<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>';
+                     }
+                 }
+                ?>
             </form>
         </div>
     </center>

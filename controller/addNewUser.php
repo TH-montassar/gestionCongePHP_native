@@ -1,9 +1,7 @@
 <?php
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Form data validation and sanitation should be implemented here
-    
-    // Example: Establish database connection
+
     $serveur = 'localhost';
     $login = "root";
     $pass = "";
@@ -18,14 +16,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit(); // Exit script if connection fails
     }
 
+    $sql = "INSERT INTO UTILISATEUR (MATRICULE,ID_POSTE, NOM, PRENOM, MAIL, SOLDE_CONGE, ROLE,NUMERO_TELEPHONE, MANAGER_MATRICULE)
+        VALUES (:matricule, :id_poste,:nom, :prenom, :mail, :solde_conge, :role, :numero_telephone,:supervisor)";
 
-
-    $sql = "INSERT INTO UTILISATEUR (MATRICULE, NUMERO_TELEPHONE, NOM, PRENOM, MAIL, SOLDE_CONGE, ROLE, MANAGER_MATRICULE, ID_POSTE)
-        VALUES (:matricule, :numero_telephone, :nom, :prenom, :mail, :solde_conge, :role, :supervisor, :ID_poste)";
-
-    // Example: Bind parameters and execute SQL query
     $stmt = $connexion->prepare($sql);
     $stmt->bindParam(':matricule', $_POST['Matricule']);
+    $stmt->bindParam(':id_poste', $_POST['poste']);
     $stmt->bindParam(':numero_telephone', $_POST['NumeroTelephone']);
     $stmt->bindParam(':nom', $_POST['nom']);
     $stmt->bindParam(':prenom', $_POST['prenom']);
@@ -33,23 +29,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bindParam(':solde_conge', $_POST['SOLDE_CONGE']);
     $stmt->bindParam(':role', $_POST['role']);
 
-    // Determine the supervisor based on the selected role
     if ($_POST['role'] === 'Responsable_RH') {
-        // For 'Responsable_RH', supervisor should be NULL or an empty string
-        $supervisor = null; // or set it to an empty string as per your database schema
+        $supervisor = null;
     } else {
-        // For other roles, supervisor should be the selected supervisor's matricule
         $supervisor = $_POST['supervisor'];
     }
 
     $stmt->bindParam(':supervisor', $supervisor);
-    $stmt->bindParam(':departement', $_POST['departement']);
-    $stmt->bindParam(':ID_poste', $_POST['poste']);
 
     // Execute the query
     try {
         $stmt->execute();
         echo "Utilisateur ajouté avec succès!";
+        header("Location:../addUser.php?go=1");
     } catch(PDOException $e) {
         echo "Erreur lors de l'ajout de l'utilisateur: " . $e->getMessage();
     }
