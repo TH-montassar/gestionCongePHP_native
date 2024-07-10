@@ -30,7 +30,7 @@
             <div class="alert alert-dark" role="alert">
                 <h3>Ajouter Utilisateur</h3>
             </div>
-            <form method="POST" action="addNewUser.php">
+            <form method="POST" action="function/addNewUser.php">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputMatricule">

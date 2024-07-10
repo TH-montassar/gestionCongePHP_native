@@ -18,10 +18,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit(); // Exit script if connection fails
     }
 
-    // Example: Prepare SQL statement to insert user data
-    $sql = "INSERT INTO UTILISATEUR (MATRICULE, NUMERO_TELEPHONE, NOM, PRENOM, MAIL, SOLDE_CONGE, ROLE, MANAGER_MATRICULE, ID_DEPARTEMENT, POSTE) 
-            VALUES (:matricule, :numero_telephone, :nom, :prenom, :mail, :solde_conge, :role, :supervisor, :departement, :poste)";
-    
+
+
+    $sql = "INSERT INTO UTILISATEUR (MATRICULE, NUMERO_TELEPHONE, NOM, PRENOM, MAIL, SOLDE_CONGE, ROLE, MANAGER_MATRICULE, ID_POSTE)
+        VALUES (:matricule, :numero_telephone, :nom, :prenom, :mail, :solde_conge, :role, :supervisor, :ID_poste)";
+
     // Example: Bind parameters and execute SQL query
     $stmt = $connexion->prepare($sql);
     $stmt->bindParam(':matricule', $_POST['Matricule']);
@@ -43,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $stmt->bindParam(':supervisor', $supervisor);
     $stmt->bindParam(':departement', $_POST['departement']);
-    $stmt->bindParam(':poste', $_POST['poste']);
+    $stmt->bindParam(':ID_poste', $_POST['poste']);
 
     // Execute the query
     try {
