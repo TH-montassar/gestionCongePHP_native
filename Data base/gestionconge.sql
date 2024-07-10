@@ -92,22 +92,31 @@ alter table POSTE add constraint FK_AVOIR foreign key (ID_DEPARTEMENT)
 /* Insert fake data into DEPARTEMENT table */
 insert into DEPARTEMENT (ID_DEPARTEMENT, NOM_DEPARTEMENT) values
 (1, 'Human Resources'),
-(2, 'IT Department');
+(2, 'IT Department'),
+(3, 'avs'),
+(4, 'bbs');
 
 /* Insert fake data into POSTE table */
 insert into POSTE (ID_POSTE, ID_DEPARTEMENT, NOM_POSTE) values
 (1, 1, 'Manager'),
 (2, 2, 'Developer'),
-(3, 2, 'Designer');
+(3, 2, 'Designer'),
+(4, 2, 'validation'),
+(5, 2, 'chef d equipe'),
+(6, 3, 'validation');
 
 /* Insert fake data into UTILISATEUR table with specific MATRICULE values */
 insert into UTILISATEUR (MATRICULE, ID_POSTE, NOM, PRENOM, ROLE, NUMERO_TELEPHONE, MAIL, MOT_DE_PASSE, SOLDE_CONGE) values
-(700532, 1, 'John', 'Doe', 'Manager', '123-456-7890', 'john.doe@example.com', '$2y$10$MQXAr3BwzMC.D6f1.AIIcOcPARz//LCS64ZFapWQUdXphbMQ/koEm', 25),
+(700552, 1, 'John', 'Doe', 'Manager', '123-456-7890', 'john.doe@example.com', '$2y$10$MQXAr3BwzMC.D6f1.AIIcOcPARz//LCS64ZFapWQUdXphbMQ/koEm', 25),
 (700453, 2, 'Jane', 'Smith', 'Employe', '234-567-8901', 'jane.smith@example.com', '$2y$10$MQXAr3BwzMC.D6f1.AIIcOcPARz//LCS64ZFapWQUdXphbMQ/koEm', 20),
-(700489, 3, 'Michael', 'Johnson', 'Responsable_RH', '345-678-9012', 'michael.johnson@example.com', '$2y$10$MQXAr3BwzMC.D6f1.AIIcOcPARz//LCS64ZFapWQUdXphbMQ/koEm', 15);
+(700489, 3, 'Michael', 'Johnson', 'Responsable_RH', '345-678-9012', 'michael.johnson@example.com', '$2y$10$MQXAr3BwzMC.D6f1.AIIcOcPARz//LCS64ZFapWQUdXphbMQ/koEm', 15),
+(700532, 4, 'montassar', 'Themri', 'employe', '33456445', 'montassar.test@example.com', '$2y$10$MQXAr3BwzMC.D6f1.AIIcOcPARz//LCS64ZFapWQUdXphbMQ/koEm', 15),
+(700509, 4, 'aziz', 'farhani', 'Manager', '33456445', 'aziz.test@example.com', '$2y$10$MQXAr3BwzMC.D6f1.AIIcOcPARz//LCS64ZFapWQUdXphbMQ/koEm', 15),
+(700000, 6, 'sarra', 'mansour', 'Responsable_RH', '46649', 'sarra.test@example.com', '$2y$10$MQXAr3BwzMC.D6f1.AIIcOcPARz//LCS64ZFapWQUdXphbMQ/koEm', 15);
 
 /* Insert fake data into CONGE table referencing specific MATRICULE values */
 insert into CONGE (ID_CONGE, MATRICULE, DATE_DEBUT, DATE_FIN, NOMBRE_JOUR, TYPE_CONGE, ETAT) values
 (1, 700532, '2024-06-01', '2024-06-05', 5, 'Vacation', 'Approved'),
 (2, 700453, '2024-07-10', '2024-07-12', 3, 'Sick Leave', 'Pending'),
-(3, 700489, '2024-08-15', '2024-08-18', 4, 'Maternity Leave', 'Rejected');
+(3, 700489, '2024-08-15', '2024-08-18', 4, 'Maternity Leave', 'Rejected'),
+(4, 700509, '2024-08-15', '2024-08-18', 4, 'Maternity Leave', 'Rejected');
