@@ -142,6 +142,16 @@
                         </select>
                     </div>
                 </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="inputpassword">
+                            <h6>password</h6>
+                        </label>
+                        <input type="text" class="form-control" id="inputpassword" name="password"
+                            placeholder="password">
+                    </div>
+                </div>
                 <button type="submit" class="btn btn-success">Ajouter Utilisateur</button>
                 <?php
                  if(isset($_GET['go']))
