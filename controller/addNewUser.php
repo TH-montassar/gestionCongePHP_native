@@ -3,9 +3,10 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     include '../Data_base/db_connection.php';
+    $hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO UTILISATEUR (MATRICULE,ID_POSTE, NOM, PRENOM, MAIL, SOLDE_CONGE, ROLE,NUMERO_TELEPHONE, MANAGER_MATRICULE)
-        VALUES (:matricule, :id_poste,:nom, :prenom, :mail, :solde_conge, :role, :numero_telephone,:supervisor)";
+    $sql = "INSERT INTO UTILISATEUR (MATRICULE,ID_POSTE, NOM, PRENOM, MAIL, SOLDE_CONGE, ROLE,NUMERO_TELEPHONE, MANAGER_MATRICULE ,MOT_DE_PASSE)
+        VALUES (:matricule, :id_poste,:nom, :prenom, :mail, :solde_conge, :role, :numero_telephone,:supervisor,:password)";
 
     $stmt = $connexion->prepare($sql);
     $stmt->bindParam(':matricule', $_POST['Matricule']);
@@ -16,6 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bindParam(':mail', $_POST['mail']);
     $stmt->bindParam(':solde_conge', $_POST['SOLDE_CONGE']);
     $stmt->bindParam(':role', $_POST['role']);
+    $stmt->bindParam(':password', $hashedPassword);
 
     if ($_POST['role'] === 'Responsable_RH') {
         $supervisor = null;
