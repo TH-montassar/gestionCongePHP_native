@@ -107,7 +107,7 @@
                             <!-- Options will be dynamically populated from database -->
                             <?php
                             // Connect to your database
-                            $serveur = 'localhost';
+                            /* $serveur = 'localhost';
                             $login = "root";
                             $pass = "";
                             $database = 'gestionconge';
@@ -118,7 +118,8 @@
                             } catch(PDOException $e) {
                                 echo "Connection failed: " . $e->getMessage();
                                 exit(); // Exit script if connection fails
-                            }
+                            } */
+                            include 'Data_base/db_connection.php';
                             // Query to get all departments
                             $sql = "SELECT ID_DEPARTEMENT, NOM_DEPARTEMENT FROM DEPARTEMENT";
                             $result = $connexion->prepare($sql);
