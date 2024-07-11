@@ -1,15 +1,8 @@
 <?php
-// Database connection parameters
-$serveur = 'localhost';
-$login = "root";
-$pass = "";
-$database = 'gestionconge';
+// Database connection
 
+include '../Data_base/db_connection.php';
 try {
-    // Establish a connection to the database
-    $connexion = new PDO("mysql:host=$serveur;dbname=$database", $login, $pass);
-    $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
     // Query to fetch all managers where ROLE = 'Manager'
     $sql = "SELECT MATRICULE, NOM, PRENOM FROM UTILISATEUR WHERE ROLE = 'Manager'";
     $stmt = $connexion->prepare($sql);

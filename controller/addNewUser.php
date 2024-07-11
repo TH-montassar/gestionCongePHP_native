@@ -2,19 +2,7 @@
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $serveur = 'localhost';
-    $login = "root";
-    $pass = "";
-    $database = 'gestionconge';
-
-    try {
-        $connexion = new PDO("mysql:host=$serveur;dbname=$database", $login, $pass);
-        $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        // echo "Connected successfully"; // Uncomment for testing
-    } catch(PDOException $e) {
-        echo "Connection failed: " . $e->getMessage();
-        exit(); // Exit script if connection fails
-    }
+    include '../Data_base/db_connection.php';
 
     $sql = "INSERT INTO UTILISATEUR (MATRICULE,ID_POSTE, NOM, PRENOM, MAIL, SOLDE_CONGE, ROLE,NUMERO_TELEPHONE, MANAGER_MATRICULE)
         VALUES (:matricule, :id_poste,:nom, :prenom, :mail, :solde_conge, :role, :numero_telephone,:supervisor)";

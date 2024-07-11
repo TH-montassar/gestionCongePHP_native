@@ -106,19 +106,6 @@
                             <option selected>Choisir..</option>
                             <!-- Options will be dynamically populated from database -->
                             <?php
-                            // Connect to your database
-                            /* $serveur = 'localhost';
-                            $login = "root";
-                            $pass = "";
-                            $database = 'gestionconge';
-                            try {
-                                $connexion = new PDO("mysql:host=$serveur;dbname=$database", $login, $pass);
-                                $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                                echo "Connected successfully";
-                            } catch(PDOException $e) {
-                                echo "Connection failed: " . $e->getMessage();
-                                exit(); // Exit script if connection fails
-                            } */
                             include 'Data_base/db_connection.php';
                             // Query to get all departments
                             $sql = "SELECT ID_DEPARTEMENT, NOM_DEPARTEMENT FROM DEPARTEMENT";
