@@ -30,7 +30,7 @@
             <div class="alert alert-dark" role="alert">
                 <h3>Ajouter Utilisateur</h3>
             </div>
-            <form method="POST" action="function/addNewUser.php">
+            <form method="POST" action="controller/addNewUser.php">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputMatricule">
@@ -168,8 +168,8 @@
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>
     <script src="bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
-    <script src="function/getPosts.js"></script>
-    <script src="function/getSupervisor.js"> </script>
+    <script src="controller/getPosts.js"></script>
+    <script src="controller/getSupervisor.js"> </script>
 </body>
 
 </html>

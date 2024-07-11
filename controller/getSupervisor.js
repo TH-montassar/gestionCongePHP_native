@@ -12,7 +12,7 @@ $(document).ready(function () {
       $supervisorSelect.prop("disabled", true);
     } else if (selectedRole === "Manager") {
       $.ajax({
-        url: "function/getRh.php",
+        url: "controller/getRh.php",
         type: "GET",
         dataType: "json",
         success: function (data) {
@@ -39,7 +39,7 @@ $(document).ready(function () {
       });
     } else if (selectedRole === "Employe") {
       $.ajax({
-        url: "function/getManagers.php",
+        url: "controller/getManagers.php",
         type: "GET",
         dataType: "json",
         success: function (data) {

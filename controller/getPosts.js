@@ -6,7 +6,7 @@ $(document).ready(function () {
     var departementId = $(this).val();
     $.ajax({
       type: "POST",
-      url: "function/getPosts.php", // PHP script to fetch posts based on department
+      url: "controller/getPosts.php", // PHP script to fetch posts based on department
       data: {
         departementId: departementId,
       },
