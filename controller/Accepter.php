@@ -22,8 +22,8 @@ function accepter($id,$E)
 			SET ETAT = 'Approved' where ID_CONGE=$id");
 		$requete->execute();
 		if ($E==1) {
-			header("location:validationadmin.php");
-		}else{header("location:validationchef.php");}
+			header("location:../validationadmin.php");
+		}else{header("location:../validationchef.php");}
 	}
 	catch(PDOEXEPTION $e){
 		echo'echec:'.$e->get_message();

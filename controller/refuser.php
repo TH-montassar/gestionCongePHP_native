@@ -21,8 +21,8 @@
 				$requete2=$connexion->prepare("UPDATE UTILISATEUR SET SOLDE_CONGE=$NNB_J where MATRICULE=$MAT");
 				$requete2->execute();
 			if ($E==1) {
-				header("location:validationadmin.php");
-			}else{header("location:validationchef.php");}
+				header("location:../validationadmin.php");
+			}else{header("location:../validationchef.php");}
 	}
 	catch(PDOEXEPTION $e){
 		echo'echec:'.$e->get_message();

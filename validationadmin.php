@@ -26,14 +26,12 @@
 
     <center>
         <?php
-        $serveur = "localhost";
-        $login = "root";
-        $pass = "";
-
+        
+        include 'Data_base/db_connection.php';
+        $id=$_SESSION['mat'];
         try {
-            $connexion = new PDO("mysql:host=$serveur;dbname=gestionconge", $login, $pass);
-            $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $requete1 = $connexion->prepare("SELECT NOM, PRENOM, DATE_DEBUT, DATE_FIN, TYPE_CONGE, NOMBRE_JOUR, ID_CONGE, ETAT, MATRICULE FROM CONGE NATURAL JOIN UTILISATEUR WHERE ROLE='Manager' AND ETAT != 'Approved' ORDER BY ID_CONGE DESC");
+            #AND MANAGER_MATRICULE = $id
+            $requete1 = $connexion->prepare("SELECT NOM, PRENOM, DATE_DEBUT, DATE_FIN, TYPE_CONGE, NOMBRE_JOUR, ID_CONGE, ETAT, MATRICULE FROM CONGE NATURAL JOIN UTILISATEUR WHERE ROLE='Manager' AND ETAT != 'Approved'  ORDER BY ID_CONGE DESC");
             $requete1->execute();
             $requete1 = $requete1->fetchAll();
             $MAT = $requete1[0][8];
@@ -64,7 +62,10 @@
                 echo '<td>' . $row[3] . '</td>';
                 echo '<td>' . $row[4] . '</td>';
                 echo '<td>' . $row[5] . '</td>';
-                echo '<td>' . $row[7] . '</td>'; // ETAT
+                #echo '<td>' . $row[7] . '</td>'; // ETAT
+                $etat = htmlspecialchars($row['ETAT']);
+                $etat_class = ($etat == 'Approved') ? 'bg-success text-white' : (($etat == 'Rejected') ? 'bg-danger text-white' : '');
+                echo '<td class="' . $etat_class . '">' . $etat . '</td>';
                 // Validation column with dropdown
                 echo '<td>';
                 if ($row[7] == 1 || $row[7] == -1) {
@@ -73,8 +74,8 @@
                     echo '<div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
                             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                <a class="dropdown-item" href="Accepter.php?ID=' . $row[6] . '& E=1">Accepter</a>
-                                <a class="dropdown-item" href="refuser.php?ID=' . $row[6] . '& N=' . $row[5] . '& MAT=' . $MAT . '& E=1">Refuser</a>
+                                <a class="dropdown-item" href="controller/Accepter.php?ID=' . $row[6] . '& E=1">Accepter</a>
+                                <a class="dropdown-item" href="controller/refuser.php?ID=' . $row[6] . '& N=' . $row[5] . '& MAT=' . $MAT . '& E=1">Refuser</a>
                                 <a class="dropdown-item" href="modifier.php?ID=' . $row[6] . '& E=1">Modifier</a>
                             </div>
                         </div>';
